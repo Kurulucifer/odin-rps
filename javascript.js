@@ -2,13 +2,9 @@ console.log("Loaded.");
 
 // rock paper scissors woo
 
-// get the computer's choice 
-// i.e. generate it here
 function getComputerChoice() {
-    // Generate an integer from 0 to 2 (0, 1, 2)
     let randNum = Math.floor((Math.random() * 3))
 
-    // Convert that number to text
     let choice = "";
     switch(randNum) {
         case 0:
@@ -39,11 +35,9 @@ selections.addEventListener("click", (e) => {
     game.dispatchEvent(event);
 });
 
-// Keep track of player and computer scores
 let humanScore = 0;
 let computerScore = 0;
 
-// play one round of rock, paper, scissors
 function playRound(humanChoice, computerChoice) {
     humanChoice = humanChoice.toLowerCase();
 
