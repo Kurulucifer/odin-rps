@@ -24,6 +24,7 @@ function getComputerChoice() {
 const game = document.querySelector("div.game");
 const score = document.querySelector("div.score");
 const results = document.querySelector("div.results");
+const field = document.querySelector("div.field");
 const selections = document.querySelector("div.button-container");
 
 // Listens for the player's choice every round
@@ -72,6 +73,7 @@ function playRound(humanChoice, computerChoice) {
 
     results.textContent = result;
     score.textContent = `${humanScore} --- ${computerScore}`;
+    field.textContent = `Player > ${humanChoice} vs. ${computerChoice} < Computer`
     
     if (humanScore === 5 || computerScore === 5) {
         endGame();
@@ -95,6 +97,7 @@ function endGame() {
 function playGame() {
     score.textContent = `${humanScore} --- ${computerScore}`;
     results.textContent = `Play your hand to get started!`
+    field.textContent = `Player > ??? < Computer`;
 
     game.addEventListener("playerChoice", function play(e) {
         playRound(e.detail, getComputerChoice())
