@@ -31,10 +31,10 @@ function getComputerChoice() {
 //     return choice;
 // }
 
-const selections = document.querySelector("div.button-container");
 const game = document.querySelector("div.game");
 const score = document.querySelector("div.score");
 const results = document.querySelector("div.results");
+const selections = document.querySelector("div.button-container");
 
 selections.addEventListener("click", (e) => {
     let event = new CustomEvent("playerChoice", {
@@ -83,6 +83,27 @@ function playRound(humanChoice, computerChoice) {
     
     // console.log(result);
     // console.log(`Score: ${humanScore} to ${computerScore}`)
+
+    results.textContent = result;
+    score.textContent = `${humanScore} - ${computerScore}`;
+    
+    if (humanScore === 5 || computerScore === 5) {
+        endGame();
+    }
+}
+
+function endGame() {
+    if (humanScore === computerScore) {
+        results.textContent = "A tie?!";
+    }
+    else if (humanScore > computerScore) {
+        results.textContent = "You win!";
+    }
+    else {
+        results.textContent = "You lose...";
+    }
+
+    selections.childNodes.forEach((button) => button.disabled = true)
 }
 
 function playGame() {
@@ -92,7 +113,9 @@ function playGame() {
     //     playRound(humanSelection, computerSelection);
     // }
 
-    game.addEventListener("playerChoice", (e) => console.log(e.detail));
+    game.addEventListener("playerChoice", function play(e) {
+        playRound(e.detail, getComputerChoice())
+    });
 
     if (humanScore === computerScore) {
         // console.log(`A tie?! | Final Score: ${humanScore} to ${computerScore}`);
@@ -105,4 +128,4 @@ function playGame() {
     }
 }
 
-// playGame();
+playGame();
