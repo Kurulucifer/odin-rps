@@ -71,7 +71,7 @@ function playRound(humanChoice, computerChoice) {
     }
 
     results.textContent = result;
-    score.textContent = `${humanScore} - ${computerScore}`;
+    score.textContent = `${humanScore} --- ${computerScore}`;
     
     if (humanScore === 5 || computerScore === 5) {
         endGame();
@@ -93,6 +93,9 @@ function endGame() {
 }
 
 function playGame() {
+    score.textContent = `${humanScore} --- ${computerScore}`;
+    results.textContent = `Play your hand to get started!`
+
     game.addEventListener("playerChoice", function play(e) {
         playRound(e.detail, getComputerChoice())
     });
