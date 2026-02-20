@@ -25,17 +25,12 @@ function getComputerChoice() {
     return choice;
 }
 
-// get the player's choice
-// function getHumanChoice() {
-//     let choice = prompt("Rock, paper, or scissors? I recommend scissors...")
-//     return choice;
-// }
-
 const game = document.querySelector("div.game");
 const score = document.querySelector("div.score");
 const results = document.querySelector("div.results");
 const selections = document.querySelector("div.button-container");
 
+// Listens for the player's choice every round
 selections.addEventListener("click", (e) => {
     let event = new CustomEvent("playerChoice", {
         detail: e.target.id
@@ -80,9 +75,6 @@ function playRound(humanChoice, computerChoice) {
         computerScore++;
         result = "Rock beats scissors. You lost! Sorry, Chisa...";
     }
-    
-    // console.log(result);
-    // console.log(`Score: ${humanScore} to ${computerScore}`)
 
     results.textContent = result;
     score.textContent = `${humanScore} - ${computerScore}`;
@@ -107,25 +99,9 @@ function endGame() {
 }
 
 function playGame() {
-    // for (let i = 0; i < 5; i++) {
-    //     let humanSelection = getHumanChoice();
-    //     let computerSelection = getComputerChoice();
-    //     playRound(humanSelection, computerSelection);
-    // }
-
     game.addEventListener("playerChoice", function play(e) {
         playRound(e.detail, getComputerChoice())
     });
-
-    if (humanScore === computerScore) {
-        // console.log(`A tie?! | Final Score: ${humanScore} to ${computerScore}`);
-    }
-    else if (humanScore > computerScore) {
-        // console.log(`You win! | Final Score: ${humanScore} to ${computerScore}`);
-    }
-    else {
-        // console.log(`You lose... | Final Score: ${humanScore} to ${computerScore}`);
-    }
 }
 
 playGame();
